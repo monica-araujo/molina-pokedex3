@@ -1,9 +1,10 @@
 # POKEDEX
 
 Nome dos integrantes: 
-- Pessoa 1
-- Pessoa 2
-- Pessoa 3
+- Rafael Soares Martins
+- Bruno Poggian
+- Felipe Souto de Carvalho
+- Mônica Pereira de Araujo
 
 Link do Surge: www.link.com.br
 
