@@ -2,6 +2,7 @@ import React from 'react'
 import { Router } from './router/router'
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
+import logo from '../src/img/logo.png'
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -11,9 +12,9 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background-color: white;
+    background-color: #daf2da;
     color: black;
-    height: 5000px;
+
   }
 
   button {
@@ -29,17 +30,16 @@ const Header = styled.header`
   height: 50px;
   display: flex;
   align-items: center;
-  padding-left: 15px;
   position: fixed;
-  width: 100vw;
+  
 `
 
-const H1 = styled.h1`
-  color: yellow;
-`
 const HeaderContainer = styled.div`
   display: grid;
-  grid-template-columns: 100px 100px 800px 100px 100px;
+  grid-template-columns: 100px 100px 1fr 100px 100px;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
 `
 
 const LogoContainer = styled.div`
@@ -47,7 +47,7 @@ const LogoContainer = styled.div`
 `
 
 const ButtonContainer = styled.div`
-  grid-column-start: 5;
+  grid-column-start: 4;
 `
 const Button = styled.button`
   background-color: purple;
@@ -55,6 +55,7 @@ const Button = styled.button`
   border: none;
   border-radius: 15px;
 `
+
 function App() {
   return (
     <div>
@@ -62,7 +63,7 @@ function App() {
         <Header>
           <HeaderContainer>
             <LogoContainer>
-              <H1>Pokedex</H1>
+              <img src={logo} width='120%' />
             </LogoContainer>
             <ButtonContainer>
               <Button>Pokedex</Button>
