@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import pokemon from '../img/pokemon.png'
 
+
 const DivContainer = styled.div`
     display: flex;
     align-items: center;
