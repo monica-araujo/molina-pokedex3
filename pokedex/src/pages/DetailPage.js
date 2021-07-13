@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import axios from 'axios' 
 import pokemon from '../img/pokemon.png'
 
 const DivContainer = styled.div`
