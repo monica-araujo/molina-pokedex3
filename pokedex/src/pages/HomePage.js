@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import axios from 'axios' 
 import banner from '../img/banner.jpeg'
 import pokemon from '../img/pokemon.png'
+//import { GlobalStateContext } from '../global/GlobalStateContext'
 
 const BannerImg = styled.img`
     width: 100%;
@@ -49,12 +50,45 @@ const Img = styled.img`
     align-items: center;
 `
 export const HomePage = () => {
+    /*const {data} = useContext(GlobalStateContext)
+    const {card, setCard} = data
+    const {pokelist, setPokelist} = data
+    const {getPokelist} = data
+
+    useEffect (() => {
+        console.log(data)
+    }, [])*/
+
+    const [pokemons, setPokemons] = useState([])
+    
+    useEffect (() => {
+        axios.get('https://pokeapi.co/api/v2/pokemon?limit=20')
+        .then((res) => {
+            setPokemons(res.data)
+            console.log(res.data)
+        }).catch ((err) => {
+            alert(err.res.data)
+        })
+    }, [])
+
+    const [listPokemons, setListPokemons] = useState([])
+    
+    
     return (
         <div>
             <div>
                 <BannerImg src={banner} />;
             </div>
             <DivCard>
+                {
+                    pokemons?(<CardPokemon>
+                        <Img src ={pokemon} width='70%' />
+                        <DivButton>
+                            <SpecificButton>Adicionar a pokedex</SpecificButton>
+                            <SpecificButton>Ver Detalhes</SpecificButton>
+                        </DivButton>
+                    </CardPokemon>):(<div>Carregando</div>)
+                }
                 <CardPokemon>
                     <Img src ={pokemon} width='70%' />
                     <DivButton>
