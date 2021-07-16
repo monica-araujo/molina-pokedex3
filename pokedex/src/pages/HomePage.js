@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import axios from 'axios' 
-import banner from '../img/banner.jpeg'
+import banner from '../img/pokemon-banner.jpg'
 import {PokemonCard} from '../Container/PokemonCard/PokemonCard'
 //import { GlobalStateContext } from '../global/GlobalStateContext'
 
@@ -28,15 +28,20 @@ export const HomePage = () => {
        {name: "bulbasaur", url: "https://pokeapi.co/api/v2/pokemon/1/"}
     ]
     )
-    
-    useEffect (() => {
-        axios.get('https://pokeapi.co/api/v2/pokemon?limit=200')
+
+    const getPokemon =  () => {
+        axios.get('https://pokeapi.co/api/v2/pokemon')
         .then((res) => {
             console.log(res.data)
             setPokemons(res.data.results)
         }).catch ((err) => {
             alert(err.res.data)
         })
+    }
+    
+    useEffect (() => {
+        getPokemon()
+
     }, [])
     
     

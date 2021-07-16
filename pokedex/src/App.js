@@ -26,7 +26,7 @@ const GlobalStyle = createGlobalStyle`
 
 
 const Header = styled.header`
-  background-color: rgba(25, 0, 51, 0.9);
+  background-color: rgba(25, 0, 51, 0.8);
   height: 50px;
   display: flex;
   align-items: center;

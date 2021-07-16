@@ -16,8 +16,7 @@ const CardPokemon = styled.div`
     margin: 15px;
 `
 const DivButton = styled.div`
-    display: flex;
-    
+    display: flex;    
 `
 const SpecificButton = styled.button`
     border-radius: 25px;
@@ -30,9 +29,6 @@ const SpecificButton = styled.button`
         font-weight: bold;
     }
 `
-
-
-
 const Img = styled.img`
     align-items: center;
     width: 100px;
@@ -51,7 +47,7 @@ export const Pokemon = ({thisPokemon}) => {
     const getPokemon = (url) => {
         axios.get(url)
         .then((res) => {
-            console.log(res)
+            console.log(res.data)
             setOnePokemon(res.data)
         })
         .catch((err)=> {
@@ -61,7 +57,7 @@ export const Pokemon = ({thisPokemon}) => {
 
     useEffect(() => {
         getPokemon(thisPokemon.url)
-    })
+    },[])
 
     return (
         <div>  
