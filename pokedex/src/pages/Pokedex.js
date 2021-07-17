@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import axios from 'axios' 
 import pokemon from '../img/pokemon.png'
+import { Header } from '../Container/Header/Header'
 
 const DivContainer = styled.div`
     display: flex;
@@ -51,6 +52,7 @@ const Img = styled.img`
 export const Pokedex = () => {
     return (
         <div>
+            <Header />
             <DivContainer>
                 <h1>POKEDEX</h1>
             </DivContainer>

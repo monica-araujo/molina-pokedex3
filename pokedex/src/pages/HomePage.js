@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import axios from 'axios' 
 import banner from '../img/pokemon-banner.jpg'
 import {PokemonCard} from '../Container/PokemonCard/PokemonCard'
+import { Header } from '../Container/Header/Header'
 //import { GlobalStateContext } from '../global/GlobalStateContext'
 
 const BannerImg = styled.img`
@@ -41,12 +42,12 @@ export const HomePage = () => {
     
     useEffect (() => {
         getPokemon()
-
     }, [])
     
     
     return (
         <div>
+            <Header />
             <div>
                 <BannerImg src={banner} />
             </div>
