@@ -33,7 +33,6 @@ export const HomePage = () => {
     const getPokemon =  () => {
         axios.get('https://pokeapi.co/api/v2/pokemon')
         .then((res) => {
-            console.log(res.data)
             setPokemons(res.data.results)
         }).catch ((err) => {
             alert(err.res.data)
