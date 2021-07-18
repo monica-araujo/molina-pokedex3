@@ -5,9 +5,10 @@ import {PokemonCard} from '../Container/PokemonCard/PokemonCard'
 import { Header } from '../Container/Header/Header'
 import GlobalStateContext from "../global/GlobalStateContext";
 
-const BannerImg = styled.img`
+const BannerImg = styled.div`
     width: 100%;
     height: 550px;
+    background-image: url(${banner});
     background-size: cover;
 `
 
@@ -25,7 +26,7 @@ export const HomePage = () => {
         <div>
             <Header />
             <div>
-                <BannerImg src={banner} />
+                <BannerImg  />
             </div>
                 <PokemonCard pokemons={pokemons}/>                
         </div>

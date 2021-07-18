@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import { Header } from '../Container/Header/Header'
 import imagemPokemon from '../img/pokemon.png'
 import { useHistory, useParams } from "react-router-dom";
-import GlobalStateContext from "../../global/GlobalStateContext";
-import axios from "axios";
+/* import GlobalStateContext from "../../global/GlobalStateContext";
+ */import axios from "axios";
 
 
 const DivContainer = styled.div`
@@ -19,6 +19,7 @@ const DivCard = styled.div`
     margin: 15px;
     align-items: center;
     justify-content: center;
+    
 `
 
 const CardPokemon = styled.div`
@@ -29,6 +30,11 @@ const CardPokemon = styled.div`
     align-items: center;
     padding: 20px;
     grid-template-columns: 1fr 1fr 1fr;
+    @media(max-width: 600px) {
+    flex-direction: column;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
 `
 
 const DivImages = styled.div`
@@ -56,7 +62,7 @@ const CardDescription = styled.div`
 `
 
 export const DetailPage = () => {
-    const { name, telaPokedex } = useParams();
+    /* const { name, telaPokedex } = useParams();
     const history = useHistory();
     const { pokemons, pokedex } = useContext(GlobalStateContext);
     const [selectedPokemon, setSelectedPokemon] = useState({});
@@ -81,7 +87,7 @@ export const DetailPage = () => {
         } else {
           setSelectedPokemon(current);
         }
-      }, []);
+      }, []); */
 
     return (
         <div>
