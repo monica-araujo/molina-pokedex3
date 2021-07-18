@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Header } from '../Container/Header/Header'
 import pokemon from '../img/pokemon.png'
 
 
@@ -54,16 +55,20 @@ const CardDescription = styled.div`
     padding:15px;
 `
 
-export const DetailPage = () => {
+export const DetailPage = (onePokemon) => {
+
+    console.log(onePokemon)
+
     return (
         <div>
+            <Header />
             <DivContainer>
                 <h1>Blastoise</h1>
             </DivContainer>
             <DivCard>
             <CardPokemon>
                 <DivImages>
-                    <img src={pokemon} alt="" />
+                    <img src={onePokemon.sprites} alt="" />
                     <img src={pokemon} alt="" />
                 </DivImages>
                 <CardDescription>

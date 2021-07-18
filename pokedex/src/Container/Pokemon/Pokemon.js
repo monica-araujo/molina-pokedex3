@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-
+import { useHistory } from 'react-router-dom'
 
 const CardPokemon = styled.div`
     background-color:  rgba(25, 0, 51, 0.9);
@@ -38,6 +38,7 @@ const Img = styled.img`
 
 
 export const Pokemon = ({thisPokemon}) => {
+    const history = useHistory()
     
     const[onePokemon, setOnePokemon] = useState({
         sprites: {
@@ -59,6 +60,10 @@ export const Pokemon = ({thisPokemon}) => {
         getPokemon(thisPokemon.url)
     },[])
 
+    const goToDetailsPage = () => {
+        history.push('/detalhes')
+    }
+
     return (
         <div>  
             <CardPokemon >
@@ -67,7 +72,7 @@ export const Pokemon = ({thisPokemon}) => {
                 </div>
                 <DivButton>
                     <SpecificButton>Adicionar a pokedex</SpecificButton>
-                    <SpecificButton>Ver Detalhes</SpecificButton>
+                    <SpecificButton  onClick={goToDetailsPage}>Ver Detalhes</SpecificButton>
                 </DivButton>
             </CardPokemon>
         </div>

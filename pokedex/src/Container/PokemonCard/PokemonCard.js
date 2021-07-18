@@ -30,15 +30,9 @@ export const PokemonCard = ({pokemons}) => {
                             return(
                                <Pokemon key={idx} thisPokemon={val} />
                             )
-                        }
-                            
-                        )
-                    
-                    ):(<div>Carregando</div>)
-                    
-
-           /*  
-             */
+                        }))
+                        :
+                        (<div>Carregando</div>)
                 }
             </DivCard>
         </div>

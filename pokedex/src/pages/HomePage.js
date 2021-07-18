@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import axios from 'axios' 
 import banner from '../img/pokemon-banner.jpg'
 import {PokemonCard} from '../Container/PokemonCard/PokemonCard'
+import { Header } from '../Container/Header/Header'
 //import { GlobalStateContext } from '../global/GlobalStateContext'
 
 const BannerImg = styled.img`
@@ -32,7 +33,6 @@ export const HomePage = () => {
     const getPokemon =  () => {
         axios.get('https://pokeapi.co/api/v2/pokemon')
         .then((res) => {
-            console.log(res.data)
             setPokemons(res.data.results)
         }).catch ((err) => {
             alert(err.res.data)
@@ -41,12 +41,12 @@ export const HomePage = () => {
     
     useEffect (() => {
         getPokemon()
-
     }, [])
     
     
     return (
         <div>
+            <Header />
             <div>
                 <BannerImg src={banner} />
             </div>
