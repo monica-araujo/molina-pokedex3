@@ -1,8 +1,7 @@
 import React from 'react'
 import { Router } from './router/router'
-import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
-import logo from '../src/img/logo.png'
+import GlobalState from './global/GlobalState'
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -30,8 +29,10 @@ const GlobalStyle = createGlobalStyle`
 function App() {
   return (
     <div>
-      <GlobalStyle/>
+      <GlobalState>
+        <GlobalStyle/>
         <Router />
+      </GlobalState>
     </div>
   );
 }

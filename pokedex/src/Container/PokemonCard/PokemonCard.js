@@ -26,9 +26,9 @@ export const PokemonCard = ({pokemons}) => {
             <DivCard>
              {
                     pokemons?(
-                        pokemons.map((val, idx) => {
+                        pokemons.map((thisPokemon) => {
                             return(
-                               <Pokemon key={idx} thisPokemon={val} />
+                               <Pokemon key={thisPokemon.name} thisPokemon={thisPokemon} />
                             )
                         }))
                         :

@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Header } from '../Container/Header/Header'
-import pokemon from '../img/pokemon.png'
+import imagemPokemon from '../img/pokemon.png'
+import { useHistory, useParams } from "react-router-dom";
+/* import GlobalStateContext from "../../global/GlobalStateContext";
+ */import axios from "axios";
 
 
 const DivContainer = styled.div`
@@ -16,6 +19,7 @@ const DivCard = styled.div`
     margin: 15px;
     align-items: center;
     justify-content: center;
+    
 `
 
 const CardPokemon = styled.div`
@@ -26,6 +30,11 @@ const CardPokemon = styled.div`
     align-items: center;
     padding: 20px;
     grid-template-columns: 1fr 1fr 1fr;
+    @media(max-width: 600px) {
+    flex-direction: column;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
 `
 
 const DivImages = styled.div`
@@ -37,12 +46,9 @@ const DivImages = styled.div`
     padding:15px;
 `
 
-
 const DescriptionP = styled.p`
     padding: 15px;
 `
-
-
 
 const Title =  styled.h2`
     color: #f9dd00;
@@ -55,9 +61,33 @@ const CardDescription = styled.div`
     padding:15px;
 `
 
-export const DetailPage = (onePokemon) => {
-
-    console.log(onePokemon)
+export const DetailPage = () => {
+    /* const { name, telaPokedex } = useParams();
+    const history = useHistory();
+    const { pokemons, pokedex } = useContext(GlobalStateContext);
+    const [selectedPokemon, setSelectedPokemon] = useState({});
+  
+    useEffect(() => {
+        let current = [];
+        if (telaPokedex) {
+          current = pokedex.find((item) => {
+            return item.name === name;
+          });
+        } else {
+          current = pokemons.find((item) => {
+            return item.name === name;
+          });
+        }
+    
+        if (!current) {
+          axios
+            .get(`https://pokeapi.co/api/v2/pokemon/${name}`)
+            .then((res) => setSelectedPokemon(res.data))
+            .catch((err) => console.log(err.response.message));
+        } else {
+          setSelectedPokemon(current);
+        }
+      }, []); */
 
     return (
         <div>
@@ -68,8 +98,8 @@ export const DetailPage = (onePokemon) => {
             <DivCard>
             <CardPokemon>
                 <DivImages>
-                    <img src={onePokemon.sprites} alt="" />
-                    <img src={pokemon} alt="" />
+                    <img src={imagemPokemon} alt="" />
+                    <img src={imagemPokemon} alt="" />
                 </DivImages>
                 <CardDescription>
                     <Title>Status</Title>
