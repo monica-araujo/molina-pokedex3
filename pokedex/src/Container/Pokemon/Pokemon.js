@@ -1,7 +1,8 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
+import { goToDetailsPage } from '../../router/coordinator'
+import GlobalStateContext from '../../global/GlobalStateContext';
 
 const CardPokemon = styled.div`
     background-color:  rgba(25, 0, 51, 0.9);
@@ -37,42 +38,67 @@ const Img = styled.img`
 `
 
 
-export const Pokemon = ({thisPokemon}) => {
+export const Pokemon = (props) => {
     const history = useHistory()
     
-    const[onePokemon, setOnePokemon] = useState({
-        sprites: {
-            front_default: ""
-        }
-    })
-    const getPokemon = (url) => {
-        axios.get(url)
-        .then((res) => {
-            console.log(res.data)
-            setOnePokemon(res.data)
-        })
-        .catch((err)=> {
-            console.log(err)
-        })
-    }
+    
+    const { pokemons, setPokemons, pokedex, setPokedex } = useContext(
+    GlobalStateContext
+    );
 
-    useEffect(() => {
-        getPokemon(thisPokemon.url)
-    },[])
+    const addToPokedex = () => {
+    const pokeIndex = pokemons.findIndex(
+        (item) => item.name === props.thisPokemon.name
+    );
+    const newPokemonsList = [...pokemons];
+    newPokemonsList.splice(pokeIndex, 1);
+    const orderedPokemons = newPokemonsList.sort((a, b) => {
+        return a.id - b.id;
+    });
 
-    const goToDetailsPage = () => {
-        history.push('/detalhes')
-    }
+    const newPokedexList = [...pokedex, props.thisPokemon];
+    const orderedPokedex = newPokedexList.sort((a, b) => {
+        return a.id - b.id;
+    });
+
+    setPokedex(orderedPokedex);
+    setPokemons(orderedPokemons);
+    };
+
+    const removeFromPokedex = () => {
+    const pokeIndex = pokedex.findIndex(
+        (item) => item.name === props.thisPokemon.name
+    );
+
+    const newPokedexList = [...pokedex];
+    newPokedexList.splice(pokeIndex, 1);
+    const orderedPokedex = newPokedexList.sort((a, b) => {
+        return a.id - b.id;
+    });
+
+    const newPokemonsList = [...pokemons, props.thisPokemon];
+    const orderedPokemons = newPokemonsList.sort((a, b) => {
+        return a.id - b.id;
+    });
+
+    setPokedex(orderedPokedex);
+    setPokemons(orderedPokemons);
+    };
+
 
     return (
         <div>  
             <CardPokemon >
                 <div>
-                    <Img src ={onePokemon.sprites.front_default}  />
+                    <Img src ={props.thisPokemon && props.thisPokemon.sprites.other.dream_world.front_default}  />
                 </div>
                 <DivButton>
-                    <SpecificButton>Adicionar a pokedex</SpecificButton>
-                    <SpecificButton  onClick={goToDetailsPage}>Ver Detalhes</SpecificButton>
+                    <SpecificButton 
+                        onClick={props.isPokedex ? removeFromPokedex : addToPokedex}
+                    >
+                        {props.isPokedex ? "Remover" : "Adicionar a Pokédex"}
+                    </SpecificButton>
+                    <SpecificButton  onClick={() => goToDetailsPage(history)}>Ver Detalhes</SpecificButton>
                 </DivButton>
             </CardPokemon>
         </div>
