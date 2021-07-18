@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
-import axios from 'axios' 
 import banner from '../img/pokemon-banner.jpg'
 import {PokemonCard} from '../Container/PokemonCard/PokemonCard'
 import { Header } from '../Container/Header/Header'
-//import { GlobalStateContext } from '../global/GlobalStateContext'
+import GlobalStateContext from "../global/GlobalStateContext";
 
 const BannerImg = styled.img`
     width: 100%;
@@ -16,32 +15,10 @@ const BannerImg = styled.img`
 
 
 export const HomePage = () => {
-    /*const {data} = useContext(GlobalStateContext)
-    const {card, setCard} = data
-    const {pokelist, setPokelist} = data
-    const {getPokelist} = data
+    const { pokemons } = useContext(GlobalStateContext);
 
-    useEffect (() => {
-        console.log(data)
-    }, [])*/
-
-    const [pokemons, setPokemons] = useState([
-       {name: "bulbasaur", url: "https://pokeapi.co/api/v2/pokemon/1/"}
-    ]
-    )
-
-    const getPokemon =  () => {
-        axios.get('https://pokeapi.co/api/v2/pokemon')
-        .then((res) => {
-            setPokemons(res.data.results)
-        }).catch ((err) => {
-            alert(err.res.data)
-        })
-    }
     
-    useEffect (() => {
-        getPokemon()
-    }, [])
+
     
     
     return (

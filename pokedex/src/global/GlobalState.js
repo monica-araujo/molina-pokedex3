@@ -1,28 +1,55 @@
-import React, { useState } from "react";
-import { GlobalStateContext } from "./GlobalStateContex";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import GlobalStateContext from "./GlobalStateContext";
 
 const GlobalState = (props) => {
-    const [card, setCard] = useState ([])
-    const [pokelist, setPokelist] = useState ([])
+  const [pokemonNames, setPokemonNames] = useState([]);
+  const [pokemons, setPokemons] = useState([]);
+  const [pokedex, setPokedex] = useState([]);
 
-    const getPokelist = () => {
-        axios.get('https://pokeapi.co/api/v2/pokemon/1/')
-        .then((res) => {
-            console.log(res.data)
-        }).catch ((err) => {
-            alert(err.res.data)
+  useEffect(() => {
+    getPokemonNames();
+  }, []);
+
+  useEffect(() => {
+    const newList = [];
+    pokemonNames.forEach((item) => {
+      axios
+        .get(`https://pokeapi.co/api/v2/pokemon/${item.name}`)
+        .then((response) => {
+          newList.push(response.data);
+          if (newList.length === 20) {
+            const orderedList = newList.sort((a, b) => {
+              return a.id - b.id;
+            });
+            setPokemons(orderedList);
+          }
         })
-    }
+        .catch((error) => console.log(error.message));
+    });
+  }, [pokemonNames]);
 
-    const data = {card, setCard, pokelist, setPokelist, getPokelist}
+  const getPokemonNames = () => {
+    axios
+      .get(`https://pokeapi.co/api/v2/pokemon?limit=20`)
+      .then((response) => {
+        setPokemonNames(response.data.results);
+      })
+      .catch((error) => console.log(error.message));
+  };
 
-    return (
-        <GlobalStateContext.Provider value={{data}}>
-            {props.children}
-        </GlobalStateContext.Provider>
-    )
-}
+  const data = {
+    pokemons,
+    setPokemons,
+    pokedex,
+    setPokedex
+  };
+
+  return (
+    <GlobalStateContext.Provider value={data}>
+      {props.children}
+    </GlobalStateContext.Provider>
+  );
+};
 
 export default GlobalState;
-

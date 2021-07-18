@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import logo from '../../img/logo.png'
 import { useHistory, Link } from 'react-router-dom'
+import { goToPokedex } from '../../router/coordinator'
 
 
 const Headers = styled.header`
@@ -38,9 +39,7 @@ const Button = styled.button`
 export const Header = () => {
     const history = useHistory()
 
-    const goToPokedex = () => {
-      history.push('./pokedex')
-    }
+    
 
     return (
         <div>  
@@ -50,7 +49,7 @@ export const Header = () => {
                   <Link to="/"><img src={logo} width='100%' alt="pokemon"/></Link>      
                 </LogoContainer>
                 <ButtonContainer>
-                    <Button onClick={goToPokedex}>Pokedex</Button>
+                    <Button onClick={() => goToPokedex(history)}>Pokedex</Button>
                 </ButtonContainer>
             </HeaderContainer>
         </Headers>

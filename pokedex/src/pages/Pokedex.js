@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
-import axios from 'axios' 
 import pokemon from '../img/pokemon.png'
 import { Header } from '../Container/Header/Header'
+import {Pokemon} from '../Container/Pokemon/Pokemon'
+import { goToDetailsPage } from '../router/coordinator'
+import { useHistory } from 'react-router-dom'
+import GlobalStateContext from "../global/GlobalStateContext"
+
+
 
 const DivContainer = styled.div`
     display: flex;
@@ -50,6 +55,10 @@ const Img = styled.img`
 `
 
 export const Pokedex = () => {
+    const { pokedex } = useContext(GlobalStateContext);
+    const history = useHistory()
+
+
     return (
         <div>
             <Header />
@@ -57,55 +66,20 @@ export const Pokedex = () => {
                 <h1>POKEDEX</h1>
             </DivContainer>
             <DivCard>
-            <CardPokemon>
+            {pokedex &&
+                pokedex.map((thisPokemon) => {
+                    return <Pokemon isPokedex key={thisPokemon.name} thisPokemon={thisPokemon} />;
+            })}
+
+
+            {/* <CardPokemon>
                 <Img src ={pokemon} width='70%' />
                 <DivButton>
                     <SpecificButton>Remover da Pokedex</SpecificButton>
-                    <SpecificButton>Ver Detalhes</SpecificButton>
+                    <SpecificButton onClick={() => goToDetailsPage(history)} >Ver Detalhes</SpecificButton>
                 </DivButton>
-            </CardPokemon>
-            <CardPokemon>
-                <Img src ={pokemon} width='70%' />
-                <DivButton>
-                    <SpecificButton>Remover da Pokedex</SpecificButton>
-                    <SpecificButton>Ver Detalhes</SpecificButton>
-                </DivButton>
-            </CardPokemon>
-            <CardPokemon>
-                <Img src ={pokemon} width='70%' />
-                <DivButton>
-                    <SpecificButton>Remover da Pokedex</SpecificButton>
-                    <SpecificButton>Ver Detalhes</SpecificButton>
-                </DivButton>
-            </CardPokemon>
-            <CardPokemon>
-                <Img src ={pokemon} width='70%' />
-                <DivButton>
-                    <SpecificButton>Remover da Pokedex</SpecificButton>
-                    <SpecificButton>Ver Detalhes</SpecificButton>
-                </DivButton>
-            </CardPokemon>
-            <CardPokemon>
-                <Img src ={pokemon} width='70%' />
-                <DivButton>
-                    <SpecificButton>Remover da Pokedex</SpecificButton>
-                    <SpecificButton>Ver Detalhes</SpecificButton>
-                </DivButton>
-            </CardPokemon>
-            <CardPokemon>
-                <Img src ={pokemon} width='70%' />
-                <DivButton>
-                    <SpecificButton>Remover da Pokedex</SpecificButton>
-                    <SpecificButton>Ver Detalhes</SpecificButton>
-                </DivButton>
-            </CardPokemon>
-            <CardPokemon>
-                <Img src ={pokemon} width='70%' />
-                <DivButton>
-                    <SpecificButton>Remover da Pokedex</SpecificButton>
-                    <SpecificButton>Ver Detalhes</SpecificButton>
-                </DivButton>
-            </CardPokemon>
+            </CardPokemon> */}
+
 
         </DivCard>
         </div>
