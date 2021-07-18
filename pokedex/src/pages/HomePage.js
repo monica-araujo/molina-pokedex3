@@ -12,9 +12,6 @@ const BannerImg = styled.img`
     background-size: cover;
 `
 
-
-
-
 export const HomePage = () => {
     /*const {data} = useContext(GlobalStateContext)
     const {card, setCard} = data

@@ -2,7 +2,6 @@ import React from 'react'
 import { Router } from './router/router'
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
-import logo from '../src/img/logo.png'
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -23,9 +22,6 @@ const GlobalStyle = createGlobalStyle`
     padding: 10px;
   }
 `
-
-
-
 
 function App() {
   return (
