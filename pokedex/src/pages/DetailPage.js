@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import { Header } from '../Container/Header/Header'
 import imagemPokemon from '../img/pokemon.png'
 import { useHistory, useParams } from "react-router-dom";
-/* import GlobalStateContext from "../../global/GlobalStateContext";
- */import axios from "axios";
+import GlobalStateContext from "../global/GlobalStateContext";
+import axios from "axios";
 
 
 const DivContainer = styled.div`
@@ -33,17 +33,20 @@ const CardPokemon = styled.div`
     @media(max-width: 600px) {
     flex-direction: column;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 250px 1fr 1fr;
   }
 `
 
 const DivImages = styled.div`
-    display: flex;
-    flex-direction: column;
-    background-color: #6B0091;
-    border-radius: 15px;
-    margin: 15px;
-    padding:15px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  margin: 15px;
+  padding:15px;
+  @media(max-width: 600px) {
+    margin:0px;
+    padding: 0px;
+  }
 `
 
 const DescriptionP = styled.p`
@@ -61,8 +64,14 @@ const CardDescription = styled.div`
     padding:15px;
 `
 
+const Img = styled.img`
+  @media(max-width: 600px) {
+    width: 90%;
+  }
+`
+
 export const DetailPage = () => {
-    /* const { name, telaPokedex } = useParams();
+    const { name, telaPokedex } = useParams();
     const history = useHistory();
     const { pokemons, pokedex } = useContext(GlobalStateContext);
     const [selectedPokemon, setSelectedPokemon] = useState({});
@@ -87,43 +96,52 @@ export const DetailPage = () => {
         } else {
           setSelectedPokemon(current);
         }
-      }, []); */
+      }, []); 
+      console.log(selectedPokemon)
 
     return (
         <div>
-            <Header />
-            <DivContainer>
-                <h1>Blastoise</h1>
-            </DivContainer>
-            <DivCard>
+          <Header />
+          {selectedPokemon && selectedPokemon.sprites && (
+          <>
+          <DivContainer>
+              <h1>{selectedPokemon.name.toUpperCase()}</h1>
+          </DivContainer>
+          <DivCard>
             <CardPokemon>
-                <DivImages>
-                    <img src={imagemPokemon} alt="" />
-                    <img src={imagemPokemon} alt="" />
-                </DivImages>
-                <CardDescription>
-                    <Title>Status</Title>
-                    <DescriptionP>hp: 60</DescriptionP>
-                    <DescriptionP>attack: 62</DescriptionP>
-                    <DescriptionP>defense: 63</DescriptionP>
-                    <DescriptionP>special-attack: 80 </DescriptionP>
-                    <DescriptionP>special-defense: 80 </DescriptionP>
-                    <DescriptionP>speed: 60</DescriptionP>
-                </CardDescription>
-                <CardDescription>
-                    <Title>Tipo</Title>
-                    <DescriptionP>grass</DescriptionP>
-                    <DescriptionP>poison</DescriptionP>
-                    <Title>Principais ataques</Title>
-                    <DescriptionP>swords-dance</DescriptionP>
-                    <DescriptionP>cut</DescriptionP>
-                    <DescriptionP>bind</DescriptionP>
-                    <DescriptionP>vine-whip </DescriptionP>
-                    <DescriptionP>headbutt </DescriptionP>
-                </CardDescription>
+              <DivImages>
+                <Img src={selectedPokemon.sprites.other.dream_world.front_default} />
+              </DivImages>
+              <CardDescription>
+                <Title>Status</Title>
+                {selectedPokemon &&
+                  selectedPokemon.stats.map((stat) => {
+                    return (
+                      <DescriptionP key={stat.stat.name}>
+                        <strong>{stat.stat.name}: </strong>
+                        {stat.base_stat}
+                      </DescriptionP>
+                    );
+                  })}
+              </CardDescription>
+              <CardDescription>
+                <Title>Tipo</Title>
+                {selectedPokemon &&
+                  selectedPokemon.types.map((type) => {
+                    return <DescriptionP key={type.type.name}>{type.type.name}</DescriptionP>;
+                  })}
+                <Title>Principais ataques</Title>
+                {selectedPokemon &&
+                  selectedPokemon.moves.map((move, index) => {
+                    return (
+                      index < 5 && <DescriptionP key={move.move.name}>{move.move.name}</DescriptionP>
+                    );
+                  })}
+              </CardDescription>
             </CardPokemon>
-           
-        </DivCard>
+          </DivCard>
+          </>
+        )}
         </div>
         
     )

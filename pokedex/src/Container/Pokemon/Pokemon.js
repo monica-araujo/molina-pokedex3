@@ -98,7 +98,7 @@ export const Pokemon = (props) => {
                     >
                         {props.isPokedex ? "Remover" : "Adicionar a Pokédex"}
                     </SpecificButton>
-                    <SpecificButton  onClick={() => goToDetailsPage(history)}>Ver Detalhes</SpecificButton>
+                    <SpecificButton  onClick={() => goToDetailsPage(history, props.thisPokemon.name, props.isPokedex)}>Ver Detalhes</SpecificButton>
                 </DivButton>
             </CardPokemon>
         </div>

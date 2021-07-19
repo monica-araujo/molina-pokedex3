@@ -14,10 +14,6 @@ const BannerImg = styled.div`
 
 export const HomePage = () => {
     const { pokemons } = useContext(GlobalStateContext);
-
-    
-
-    
     
     return (
         <div>

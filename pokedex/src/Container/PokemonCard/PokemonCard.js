@@ -2,10 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import {Pokemon} from '../../Container/Pokemon/Pokemon'
 
-
-
-
-
 const DivCard = styled.div`
     display: flex;
     flex-wrap: wrap;
@@ -14,12 +10,7 @@ const DivCard = styled.div`
     justify-content: center;
 `
 
-
-
 export const PokemonCard = ({pokemons}) => {
-    
-
-    
     
     return (
         <div>  
@@ -36,6 +27,5 @@ export const PokemonCard = ({pokemons}) => {
                 }
             </DivCard>
         </div>
-
     )
 }
