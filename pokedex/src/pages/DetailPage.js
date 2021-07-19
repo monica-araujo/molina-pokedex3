@@ -67,6 +67,7 @@ const CardDescription = styled.div`
 const Img = styled.img`
   @media(max-width: 600px) {
     width: 90%;
+    height: 300px;
   }
 `
 
