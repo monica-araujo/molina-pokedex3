@@ -12,15 +12,8 @@ const BannerImg = styled.div`
     background-size: cover;
 `
 
-
-
-
 export const HomePage = () => {
     const { pokemons } = useContext(GlobalStateContext);
-
-    
-
-    
     
     return (
         <div>

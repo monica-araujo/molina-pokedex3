@@ -18,7 +18,7 @@ const GlobalState = (props) => {
         .get(`https://pokeapi.co/api/v2/pokemon/${item.name}`)
         .then((response) => {
           newList.push(response.data);
-          if (newList.length === 20) {
+          if (newList.length === 151) {
             const orderedList = newList.sort((a, b) => {
               return a.id - b.id;
             });
@@ -31,7 +31,7 @@ const GlobalState = (props) => {
 
   const getPokemonNames = () => {
     axios
-      .get(`https://pokeapi.co/api/v2/pokemon?limit=20`)
+      .get(`https://pokeapi.co/api/v2/pokemon?limit=151`)
       .then((response) => {
         setPokemonNames(response.data.results);
       })

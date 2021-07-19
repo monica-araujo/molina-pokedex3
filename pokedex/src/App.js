@@ -23,9 +23,6 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-
-
-
 function App() {
   return (
     <div>

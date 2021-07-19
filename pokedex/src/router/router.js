@@ -15,7 +15,7 @@ export const Router = () => {
                     <Pokedex/>
                 </Route>
 
-                <Route exact path={'/detalhes'}>
+                <Route exact path={'/pokemon/:name/:telaPokedex?'}>
                     <DetailPage/>
                 </Route>
             </Switch>
