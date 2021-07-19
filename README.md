@@ -6,7 +6,7 @@ Nome dos integrantes:
 - Felipe Souto de Carvalho
 - Mônica Pereira de Araujo
 
-Link do Surge:  tacit-reason.surge.sh
+Link do Surge:  molinapokedex3.surge.sh
 
 O que funciona:
 - Item 1
