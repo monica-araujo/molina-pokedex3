@@ -1,5 +1,5 @@
 # POKEDEX
-Uma pokedesx feita com react
+Uma pokedex feita com react
 
 ### Link demonstração
 https://molinapokedex3.surge.sh/
@@ -15,6 +15,3 @@ https://molinapokedex3.surge.sh/
 - Bruno Poggian
 - Felipe Souto de Carvalho
 - Mônica Pereira de Araujo
-
-
-Imagens:
