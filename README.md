@@ -1,5 +1,5 @@
 # POKEDEX
-Uma pokedex feita com react
+Uma pokedex feita com React.js
 
 ### Link demonstração
 https://molinapokedex3.surge.sh/
